@@ -264,7 +264,7 @@ def analyze_narrative(data):
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="max-w-xl text-sm md:text-base font-light leading-relaxed text-[#1A1A1A]/50 mb-12 px-6"
+          className="max-w-2xl text-base md:text-lg font-light leading-loose text-[#1A1A1A]/50 mb-16 px-6"
         >
           A HKBU Journalism student crafting human narratives from complex numbers. Fusing analytical rigor with artistic vision—from Python code to the documentary lens.
         </motion.div>
@@ -285,9 +285,9 @@ def analyze_narrative(data):
       </motion.section>
 
       {/* Main Content Grid */}
-      <main id="works" className="max-w-7xl mx-auto px-12 py-32 space-y-64">
+      <main id="works" className="max-w-[1600px] mx-auto px-12 py-32 space-y-64">
         {/* About Hook */}
-        <section id="about" className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
+        <section id="about" className="grid grid-cols-1 md:grid-cols-2 gap-48 items-center">
           <div className="relative group perspective-1000">
              <motion.div
                initial={{ opacity: 0, x: -50 }}
@@ -362,13 +362,13 @@ def analyze_narrative(data):
         </section>
 
         {/* Gallery Section */}
-        <section className="space-y-32">
-          <header className="flex justify-between items-end border-b border-[#1A1A1A]/5 pb-12">
-            <h2 className="font-serif text-6xl tracking-tighter">VISUAL ARCHIVE</h2>
-            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#1A1A1A]/20">Collections 2024</span>
+        <section className="space-y-48">
+          <header className="flex justify-between items-end border-b border-[#1A1A1A]/5 pb-16">
+            <h2 className="font-serif text-6xl md:text-7xl tracking-tighter">VISUAL ARCHIVE</h2>
+            <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#1A1A1A]/20">Collections 2024</span>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-48">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-64">
             {WORKS.map((work, index) => (
               <motion.div
                 key={work.id}
@@ -427,11 +427,11 @@ def analyze_narrative(data):
               <X className="w-6 h-6" />
             </button>
 
-            <div className="max-w-7xl w-full h-full grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
+            <div className="max-w-[1800px] w-full h-full grid grid-cols-1 lg:grid-cols-12 gap-40 items-center">
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="lg:col-span-8 h-auto aspect-video rounded-none overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] bg-black"
+                className="lg:col-span-8 h-auto aspect-[16/10] rounded-none overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] bg-black"
               >
                 {selectedWork.type === "video" ? (
                   <iframe 
@@ -491,10 +491,10 @@ def analyze_narrative(data):
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="lg:col-span-4 space-y-12"
+                className="lg:col-span-4 space-y-16"
               >
-                <div className="space-y-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#8FA998]">
+                <div className="space-y-6">
+                  <span className="text-xs font-bold uppercase tracking-[0.6em] text-steelblue-500">
                     {selectedWork.category} — {selectedWork.location}
                     {selectedWork.gallery && ` (${galleryIndex + 1} / ${selectedWork.gallery.length})`}
                   </span>
@@ -502,10 +502,10 @@ def analyze_narrative(data):
                 <AnimatePresence mode="wait">
                   <motion.p 
                     key={selectedWork.gallery ? galleryIndex : 'static'}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="text-xl font-light leading-relaxed text-[#1A1A1A]/60"
+                    exit={{ opacity: 0, y: -15 }}
+                    className="text-3xl font-light leading-relaxed text-[#1A1A1A]/80"
                   >
                     {selectedWork.gallery && selectedWork.galleryDescriptions && selectedWork.galleryDescriptions[galleryIndex] 
                       ? selectedWork.galleryDescriptions[galleryIndex] 
