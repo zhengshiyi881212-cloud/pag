@@ -19,15 +19,17 @@ import React, { useState, useEffect, useRef } from "react";
 
 interface GalleryItem {
   id: number;
-  type: "photography" | "video";
+  type: "photography" | "video" | "audio";
   title: string;
   category: string;
   src: string;
   videoUrl?: string;
+  audioUrl?: string;
   description: string;
   location: string;
-  gallery?: string[]; // For multi-image themes
+  gallery?: string[]; // For multi-image or multi-video themes
   galleryDescriptions?: string[];
+  aspectRatio?: "horizontal" | "vertical";
 }
 
 const WORKS: GalleryItem[] = [
@@ -121,6 +123,87 @@ const WORKS: GalleryItem[] = [
       "In Ciqikou, children are intently watching a Peking Opera performance on stage.",
       "In Ciqikou, my adorable niece is intently watching a theatrical performance on stage."
     ]
+  },
+  {
+    id: 5,
+    type: "video",
+    title: "Social Media Video",
+    category: "Short-form",
+    src: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1200&q=80",
+    description: "Creative short-form content designed for social platforms, merging rapid editing with impactful storytelling. (Content pending)",
+    location: "Social Platforms",
+    gallery: [
+      "https://www.youtube.com/embed/s_1usyFyXnw", 
+      "https://www.youtube.com/embed/EJWc4EKILx4"
+    ],
+    galleryDescriptions: [
+      "Social Media Video Part 1: Exploring creative transitions and digital rhythm.",
+      "Social Media Video Part 2: Impactful storytelling for the mobile generation."
+    ]
+  },
+  {
+    id: 6,
+    type: "photography",
+    title: "Photo Story: The Man Mo Temple Antique Sellers",
+    category: "Narrative",
+    src: "https://i.imgur.com/C4qoCsR.jpeg",
+    description: "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+    location: "Man Mo Temple, HK",
+    gallery: [
+      "https://i.imgur.com/C4qoCsR.jpeg",
+      "https://i.imgur.com/vynFTu0.jpeg",
+      "https://i.imgur.com/HVXt6gg.jpeg",
+      "https://i.imgur.com/UQkYiU1.jpeg",
+      "https://i.imgur.com/ae36g6c.jpeg",
+      "https://i.imgur.com/UlKTcNS.jpeg",
+      "https://i.imgur.com/wX6HIz6.jpeg",
+      "https://i.imgur.com/brlv1Uh.jpeg",
+      "https://i.imgur.com/8m3OhNm.jpeg",
+      "https://i.imgur.com/E295wsV.jpeg"
+    ],
+    galleryDescriptions: [
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall.",
+      "Here is an elderly couple selling small antique trinkets in front of the main entrance to Man Mo Temple. I took photographs from half past nine until midday, capturing the entire process of them setting up and running their stall."
+    ]
+  },
+  {
+    id: 7,
+    type: "audio",
+    title: "Gen Z Podcast",
+    category: "Digital Media",
+    src: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80",
+    audioUrl: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2310519812&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+    description: "A compelling audio report capturing campus life and social observations. Produced, written, and edited by Zheng Shiyi.",
+    location: "Digital Space"
+  },
+  {
+    id: 8,
+    type: "video",
+    title: "Google Earth Studio Animation",
+    category: "Geospatial",
+    src: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80",
+    videoUrl: "https://www.youtube.com/embed/G7xkPBWcxqo",
+    description: "A bird’s-eye view of the HKBU campus—the very place where my journey as a journalist began. Geospatial storytelling is more than just a technical showcase; it provides a vital macro-dimension to complex narratives. Within the coordinates of data and reality, I strive to capture not just locations, but the warmth and truth that reside within them.",
+    location: "Earth Virtual"
+  },
+  {
+    id: 9,
+    type: "video",
+    title: "5-shot Sequence Video",
+    category: "Cinematography",
+    src: "https://i.imgur.com/DmHdWKt.jpeg",
+    videoUrl: "https://www.youtube.com/embed/-YNb3stVqDM",
+    aspectRatio: "vertical",
+    description: "A demonstration of cinematic grammar through the classic 5-shot sequence technique. This sequence is presented in its intended vertical format.",
+    location: "Studio"
   }
 ];
 
@@ -166,7 +249,7 @@ export default function App() {
         <div className="flex space-x-12 text-[10px] font-bold uppercase tracking-[0.2em]">
           <a href="#works" className="hover:text-[#8FA998] transition-colors">Portfolio</a>
           <a href="#about" className="hover:text-[#8FA998] transition-colors">About</a>
-          <a href="mailto:hello@example.com" className="hover:text-[#8FA998] transition-colors font-serif italic normal-case text-sm tracking-normal">Contact</a>
+          <a href="mailto:24263524@life.hkbu.edu.hk" className="hover:text-[#8FA998] transition-colors font-serif italic normal-case text-sm tracking-normal">Contact</a>
         </div>
       </nav>
 
@@ -327,34 +410,51 @@ def analyze_narrative(data):
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-12"
           >
-            <h2 className="font-serif text-6xl italic tracking-tight leading-[0.9]">"Visual storytelling is a bridge ensuring the human element stay at the center."</h2>
-            <div className="space-y-6 text-lg font-light leading-relaxed text-[#1A1A1A]/60">
+            <h2 className="font-serif text-4xl md:text-5xl tracking-tight leading-tight text-steelblue-950 mb-12">
+              "I am Zheng Shiyi, a journalism student at HKBU, focused on the intersection of data-driven insights and human-centric storytelling."
+            </h2>
+            <div className="space-y-10 text-lg md:text-xl font-light leading-relaxed text-[#1A1A1A]/70">
               <p>
-                Hello! I’m <span className="text-[#1A1A1A] font-medium">Zheng Shiyi</span>. Currently studying Journalism at HKBU, I find my inspiration at the crossroads of data and human stories. My toolkit includes Python for data visualization, but my heart lies in uncovering the warmth within every news report.
+                While I use tools like <span className="text-steelblue-900 font-medium">Python and ECharts</span> to analyze complex social trends, I believe the true core of every report is the human experience.
               </p>
-              <p>
-                To me, visual storytelling is a bridge. Whether through structured data or a candid lens, my mission is to ensure that the human element remains at the center of every narrative.
-              </p>
-              <div className="pt-8 border-t border-[#1A1A1A]/5">
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#8FA998] mb-4">The Origin of This Portrait</h4>
-                <p className="text-base">
-                  This avatar is a self-portrait hand-drawn by me. It’s a tribute to my long-standing love for shoujo manga and illustration. Created during my exploration of digital media, this drawing captures the duality of my world: the keen, analytical eye of a journalist and the whimsical, creative spirit of an artist.
+              
+              <div className="pt-10 border-t border-steelblue-100">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-steelblue-500 mb-6">Creative Identity</h4>
+                <p className="leading-relaxed">
+                  My avatar is a <span className="text-steelblue-900 font-medium whitespace-nowrap">hand-drawn self-portrait</span>, reflecting my long-standing interest in illustration. It represents the balance between my analytical eye as a journalist and my creative spirit as an artist.
                 </p>
               </div>
-              <div className="flex gap-8 pt-8">
+
+              <div className="pt-10 border-t border-steelblue-100">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-steelblue-500 mb-6">Contact Information</h4>
+                <div className="space-y-4">
+                  <p className="flex items-center gap-4">
+                    <span className="font-bold text-[10px] uppercase tracking-widest text-steelblue-300 w-16">Phone</span>
+                    <span className="text-steelblue-900 font-medium">+852 52958274</span>
+                  </p>
+                  <p className="flex items-center gap-4">
+                    <span className="font-bold text-[10px] uppercase tracking-widest text-steelblue-300 w-16">Email</span>
+                    <a href="mailto:24263524@life.hkbu.edu.hk" className="text-steelblue-600 hover:text-steelblue-800 transition-colors underline decoration-steelblue-100 underline-offset-4">24263524@life.hkbu.edu.hk</a>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-6 pt-6">
                 <motion.a 
-                  href="#" 
-                  whileHover={{ y: -5, color: "#8FA998" }}
-                  className="p-5 rounded-full border border-[#1A1A1A]/10 transition-all shadow-sm hover:shadow-lg"
+                  href="https://instagram.com" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -4, backgroundColor: "#f8fafc" }}
+                  className="p-5 rounded-full border border-steelblue-100 transition-all shadow-sm hover:shadow-md"
                 >
-                  <Instagram className="w-5 h-5" />
+                  <Instagram className="w-5 h-5 text-steelblue-600" />
                 </motion.a>
                 <motion.a 
-                  href="mailto:hello@example.com" 
-                  whileHover={{ y: -5, color: "#8FA998" }}
-                  className="p-5 rounded-full border border-[#1A1A1A]/10 transition-all shadow-sm hover:shadow-lg"
+                  href="mailto:24263524@life.hkbu.edu.hk" 
+                  whileHover={{ y: -4, backgroundColor: "#f8fafc" }}
+                  className="p-5 rounded-full border border-steelblue-100 transition-all shadow-sm hover:shadow-md"
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="w-5 h-5 text-steelblue-600" />
                 </motion.a>
               </div>
             </div>
@@ -391,7 +491,13 @@ def analyze_narrative(data):
                   />
                   <div className="absolute inset-0 bg-[#A8E6CF]/0 group-hover:bg-[#A8E6CF]/10 transition-all duration-700 backdrop-grayscale-[0.5] group-hover:backdrop-grayscale-0" />
                   <div className="absolute top-10 right-10 p-4 rounded-full glass opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                    {work.type === "video" ? <Video className="w-5 h-5 text-[#8FA998]" /> : <Camera className="w-5 h-5 text-[#8FA998]" />}
+                    {work.type === "video" ? (
+                      <Video className="w-5 h-5 text-[#8FA998]" />
+                    ) : work.type === "audio" ? (
+                      <svg className="w-5 h-5 text-[#8FA998]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    ) : (
+                      <Camera className="w-5 h-5 text-[#8FA998]" />
+                    )}
                   </div>
                 </div>
                 <div className="flex justify-between items-start px-4">
@@ -427,20 +533,81 @@ def analyze_narrative(data):
               <X className="w-6 h-6" />
             </button>
 
-            <div className="max-w-[1800px] w-full h-full grid grid-cols-1 lg:grid-cols-12 gap-40 items-center">
+            <div className={`max-w-[1800px] w-full h-full grid grid-cols-1 ${selectedWork.aspectRatio === "vertical" ? "lg:grid-cols-12 gap-16 lg:gap-32" : "lg:grid-cols-12 gap-24 lg:gap-40"} items-center`}>
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="lg:col-span-8 h-auto aspect-[16/10] rounded-none overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] bg-black"
+                className={`${selectedWork.aspectRatio === "vertical" ? "lg:col-span-5 aspect-[9/16] max-h-[85vh] justify-self-center" : "lg:col-span-8 aspect-[16/10]"} h-auto rounded-none overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] bg-black`}
               >
                 {selectedWork.type === "video" ? (
-                  <iframe 
-                    src={`${selectedWork.videoUrl}?autoplay=1`}
-                    className="w-full h-full border-0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                    title={selectedWork.title}
-                  />
+                  <div className="relative w-full h-full group/gallery">
+                    <AnimatePresence mode="wait">
+                      <motion.iframe 
+                        key={galleryIndex}
+                        src={`${(selectedWork.gallery && selectedWork.gallery.length > 0) ? selectedWork.gallery[galleryIndex] : selectedWork.videoUrl}?autoplay=1`}
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowFullScreen
+                        title={selectedWork.title}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      />
+                    </AnimatePresence>
+                    {(selectedWork.gallery && selectedWork.gallery.length > 1) && (
+                      <>
+                        <button 
+                          onClick={handlePrev}
+                          className="absolute left-6 top-1/2 -translate-y-1/2 p-5 glass rounded-full shadow-lg opacity-0 group-hover/gallery:opacity-100 transition-all transform hover:scale-110 active:scale-95 hover:bg-white/80 z-10"
+                        >
+                          <ChevronLeft className="w-6 h-6 text-[#1A1A1A]" />
+                        </button>
+                        <button 
+                          onClick={handleNext}
+                          className="absolute right-6 top-1/2 -translate-y-1/2 p-5 glass rounded-full shadow-lg opacity-0 group-hover/gallery:opacity-100 transition-all transform hover:scale-110 active:scale-95 hover:bg-white/80 z-10"
+                        >
+                          <ChevronRight className="w-6 h-6 text-[#1A1A1A]" />
+                        </button>
+                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                          {selectedWork.gallery.map((_, i) => (
+                            <div 
+                              key={i} 
+                              className={`w-1.5 h-1.5 rounded-full transition-all ${i === galleryIndex ? "bg-steelblue-400 w-6" : "bg-white/40"}`}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ) : selectedWork.type === "audio" ? (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-white p-8 md:p-16 space-y-10">
+                    <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-3xl overflow-hidden shadow-2xl border border-steelblue-100/50">
+                      <img src={selectedWork.src} className="w-full h-full object-cover" alt="Podcast Cover" />
+                      <div className="absolute inset-0 bg-steelblue-900/5 backdrop-blur-[2px] flex items-center justify-center">
+                        <motion.div 
+                          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }} 
+                          transition={{ duration: 3, repeat: Infinity }}
+                          className="w-16 h-16 rounded-full border-2 border-white/80"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="w-full max-w-xl rounded-2xl overflow-hidden shadow-lg border border-steelblue-50 bg-white">
+                      <iframe 
+                        width="100%" 
+                        height="300" 
+                        scrolling="no" 
+                        frameBorder="no" 
+                        allow="autoplay" 
+                        src={selectedWork.audioUrl}
+                      />
+                    </div>
+                    
+                    <div className="text-center space-y-2 opacity-40">
+                       <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-steelblue-600">Produced by Zheng Shiyi</p>
+                       <p className="text-[9px] font-medium tracking-widest uppercase">Digital Archive — 2024</p>
+                    </div>
+                  </div>
                 ) : (selectedWork.gallery && selectedWork.gallery.length > 0) ? (
                   <div className="relative w-full h-full group/gallery">
                     <AnimatePresence mode="wait">
@@ -491,7 +658,7 @@ def analyze_narrative(data):
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="lg:col-span-4 space-y-16"
+                className={`${selectedWork.aspectRatio === "vertical" ? "lg:col-span-7 pl-4" : "lg:col-span-4"} space-y-16`}
               >
                 <div className="space-y-6">
                   <span className="text-xs font-bold uppercase tracking-[0.6em] text-steelblue-500">
