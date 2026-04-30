@@ -388,7 +388,7 @@ def analyze_narrative(data):
                className="relative rounded-[60px_20px_60px_20px] overflow-hidden aspect-[4/5] bg-[#E5E7EB] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)]"
              >
                <img 
-                 src="https://i.imgur.com/9tftovA.jpeg" 
+                 src="https://i.imgur.com/26YVzTo.jpeg" 
                  alt="Profile Photo" 
                  className="w-full h-full object-cover grayscale-0 brightness-105 contrast-110 hover:scale-105 transition-all duration-1000"
                  referrerPolicy="no-referrer"
@@ -418,12 +418,7 @@ def analyze_narrative(data):
                 While I use tools like <span className="text-steelblue-900 font-medium">Python and ECharts</span> to analyze complex social trends, I believe the true core of every report is the human experience.
               </p>
               
-              <div className="pt-10 border-t border-steelblue-100">
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-steelblue-500 mb-6">Creative Identity</h4>
-                <p className="leading-relaxed">
-                  My avatar is a <span className="text-steelblue-900 font-medium whitespace-nowrap">hand-drawn self-portrait</span>, reflecting my long-standing interest in illustration. It represents the balance between my analytical eye as a journalist and my creative spirit as an artist.
-                </p>
-              </div>
+
 
               <div className="pt-10 border-t border-steelblue-100">
                 <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-steelblue-500 mb-6">Contact Information</h4>
